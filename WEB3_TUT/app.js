@@ -289,7 +289,9 @@ App = {
     const taskId = e.target.name;
     await App.todoList.methods
       .toggleCompleted(taskId)
-      .send({ from: web3.currentProvider.selectedAddress });
+      .send({ from: web3.currentProvider.selectedAddress })
+      .on('transactionHash',(_hash)=>console.log(_hash))
+      on('receipt',(_receipt)=>console.log(_receipt));
     window.location.reload();
   },
 
